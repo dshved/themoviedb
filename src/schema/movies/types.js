@@ -4,19 +4,20 @@ const {
   GraphQLInt,
   GraphQLList,
   GraphQLFloat,
+  GraphQLObjectType,
 } = require('graphql');
 
-// const GenreType = {
-//   name: 'Genres',
-//   fields: {
-//     id: {
-//       type: GraphQLInt,
-//     },
-//     adult: {
-//       type: GraphQLBoolean,
-//     },
-//   },
-// };
+const GenreType = new GraphQLObjectType({
+  name: 'Genres',
+  fields: {
+    id: {
+      type: GraphQLInt,
+    },
+    name: {
+      type: GraphQLString,
+    },
+  },
+});
 
 const MovieBigType = {
   id: {
@@ -31,9 +32,9 @@ const MovieBigType = {
   budget: {
     type: GraphQLInt,
   },
-  // genres: {
-  //   type: new GraphQLList(GenreType),
-  // },
+  genres: {
+    type: new GraphQLList(GenreType),
+  },
   homepage: {
     type: GraphQLString,
   },
