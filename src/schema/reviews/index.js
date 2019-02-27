@@ -1,16 +1,10 @@
-const axios = require("axios");
-const {
-  GraphQLString,
-  GraphQLBoolean,
-  GraphQLInt,
-  GraphQLList,
-  GraphQLFloat,
-  GraphQLObjectType,
-} = require("graphql");
+const axios = require('axios');
+const { GraphQLString, GraphQLInt, GraphQLObjectType } = require('graphql');
 
-const { API_KEY, API_URL } = require("../../../config");
+const { API_KEY, API_URL } = require('../../../config');
+
 const ReviewType = new GraphQLObjectType({
-  name: "Review",
+  name: 'Review',
   fields: {
     id: {
       type: GraphQLString,

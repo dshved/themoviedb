@@ -1,12 +1,11 @@
-const axios = require("axios");
-const { API_KEY, API_URL } = require("../../../config");
-const { GraphQLObjectType, GraphQLList } = require("graphql");
-
-const { MovieSmallType, MovieDefaultArgsType } = require("./types");
+const axios = require('axios');
+const { GraphQLObjectType, GraphQLList } = require('graphql');
+const { API_KEY, API_URL } = require('../../../config');
+const { MovieSmallType, MovieDefaultArgsType } = require('./types');
 
 const MovieTopRatedType = new GraphQLObjectType({
-  name: "MovieTopRated",
-  description: `Get the top rated movies on TMDb.`,
+  name: 'MovieTopRated',
+  description: 'Get the top rated movies on TMDb.',
   fields: {
     ...MovieSmallType,
   },
@@ -17,14 +16,12 @@ const MovieTopRatedQuery = {
   args: {
     ...MovieDefaultArgsType,
   },
-  resolve(parentValue, { language = "en-US", page = 1 }) {
+  resolve(parentValue, { language = 'en-US', page = 1 }) {
     return axios
       .get(
         `${API_URL}/movie/top_rated?api_key=${API_KEY}&language=${language}&page=${page}`,
       )
-      .then(res => {
-        return res.data.results;
-      });
+      .then(res => res.data.results);
   },
 };
 

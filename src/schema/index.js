@@ -1,10 +1,10 @@
-const { GraphQLObjectType, GraphQLSchema } = require("graphql");
+const { GraphQLObjectType, GraphQLSchema } = require('graphql');
 
-const { MoviesQuery } = require("./movies");
-const { ReviewsQuery } = require("./reviews");
+const { MoviesQuery } = require('./movies');
+const { ReviewsQuery } = require('./reviews');
 
 const RootQuery = new GraphQLObjectType({
-  name: "RootQueryType",
+  name: 'RootQueryType',
   fields: {
     ...MoviesQuery,
     ...ReviewsQuery,

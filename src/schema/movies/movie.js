@@ -1,16 +1,16 @@
-const axios = require("axios");
-const { API_KEY, API_URL } = require("../../../config");
+const axios = require('axios');
 const {
   GraphQLObjectType,
   GraphQLList,
   GraphQLInt,
   GraphQLString,
-} = require("graphql");
+} = require('graphql');
+const { API_KEY, API_URL } = require('../../../config');
 
-const { MovieBigType, LanguageType } = require("./types");
+const { MovieBigType, LanguageType } = require('./types');
 
 const MovieSimilarType = new GraphQLObjectType({
-  name: "MovieSimilarDetail",
+  name: 'MovieSimilarDetail',
   description:
     'Get a list of similar movies. This is not the same as the "Recommendation" system you see on the website.',
   fields: {
@@ -24,8 +24,8 @@ const MovieSimilarType = new GraphQLObjectType({
 });
 
 const MovieType = new GraphQLObjectType({
-  name: "Movie",
-  description: `Get the primary information about a movie.`,
+  name: 'Movie',
+  description: 'Get the primary information about a movie.',
   fields: {
     ...MovieBigType,
     similar: {
@@ -37,9 +37,7 @@ const MovieType = new GraphQLObjectType({
               parrentValue.id
             }/similar?api_key=${API_KEY}&language=en-US&page=1`,
           )
-          .then(res => {
-            return res.data.results;
-          });
+          .then(res => res.data.results);
       },
     },
   },
@@ -55,12 +53,10 @@ const MovieQuery = {
       ...LanguageType,
     },
   },
-  resolve(parentValue, { id, language = "en-US" }) {
+  resolve(parentValue, { id, language = 'en-US' }) {
     return axios
       .get(`${API_URL}/movie/${id}?api_key=${API_KEY}&language=${language}`)
-      .then(res => {
-        return res.data;
-      });
+      .then(res => res.data);
   },
 };
 

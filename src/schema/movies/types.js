@@ -4,19 +4,19 @@ const {
   GraphQLInt,
   GraphQLList,
   GraphQLFloat,
-} = require("graphql");
+} = require('graphql');
 
-const GenreType = {
-  name: "Genres",
-  fields: {
-    id: {
-      type: GraphQLInt,
-    },
-    adult: {
-      type: GraphQLBoolean,
-    },
-  },
-};
+// const GenreType = {
+//   name: 'Genres',
+//   fields: {
+//     id: {
+//       type: GraphQLInt,
+//     },
+//     adult: {
+//       type: GraphQLBoolean,
+//     },
+//   },
+// };
 
 const MovieBigType = {
   id: {
