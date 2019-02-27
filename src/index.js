@@ -4,14 +4,13 @@ const { graphqlExpress, graphiqlExpress } = require('graphql-server-express');
 const cors = require('cors');
 const { schema } = require('./schema');
 
-const app = express();
-
-app.use(cors());
-
 const HOME_PATH = '/graphiql';
 const URL = 'http://localhost';
 const PORT = 4000;
 
+const app = express();
+
+app.use(cors());
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 
 app.use(

@@ -10,6 +10,7 @@ const { MovieQuery } = require('./movie');
 const { MovieRecommendationsQuery } = require('./recommendations');
 const { MovieTranslationsQuery } = require('./translations');
 const { MovieVideosQuery } = require('./videos');
+const { MovieReleaseDatesQuery } = require('./releasedates');
 
 module.exports = {
   MoviesQuery: {
@@ -48,6 +49,9 @@ module.exports = {
     },
     movieVideos: {
       ...MovieVideosQuery,
+    },
+    movieReleaseDates: {
+      ...MovieReleaseDatesQuery,
     },
   },
 };
