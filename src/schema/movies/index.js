@@ -7,6 +7,7 @@ const { MovieListsQuery } = require('./lists');
 const { MovieReviewsQuery } = require('./reviews');
 const { MovieSimilarQuery } = require('./similar');
 const { MovieQuery } = require('./movie');
+const { MovieRecommendationsQuery } = require('./recommendations');
 
 module.exports = {
   MoviesQuery: {
@@ -36,6 +37,9 @@ module.exports = {
     },
     movieDetail: {
       ...MovieQuery,
+    },
+    movieRecommendations: {
+      ...MovieRecommendationsQuery,
     },
   },
 };
