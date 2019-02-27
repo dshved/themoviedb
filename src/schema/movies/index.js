@@ -11,6 +11,7 @@ const { MovieRecommendationsQuery } = require('./recommendations');
 const { MovieTranslationsQuery } = require('./translations');
 const { MovieVideosQuery } = require('./videos');
 const { MovieReleaseDatesQuery } = require('./releasedates');
+const { MovieKeywordsQuery } = require('./keywords');
 
 module.exports = {
   MoviesQuery: {
@@ -52,6 +53,9 @@ module.exports = {
     },
     movieReleaseDates: {
       ...MovieReleaseDatesQuery,
+    },
+    movieKeywords: {
+      ...MovieKeywordsQuery,
     },
   },
 };
