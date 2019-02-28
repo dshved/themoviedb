@@ -56,7 +56,7 @@ const MovieTranslationsQuery = {
     return axios
       .get(`${API_URL}/movie/${id}/translations?api_key=${API_KEY}`)
       .then(res => res.data.translations)
-      .catch(({ res }) => new GraphQLError(res.data));
+      .catch(({ response }) => new GraphQLError(response.data));
   },
 };
 

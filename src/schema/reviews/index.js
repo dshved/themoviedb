@@ -49,7 +49,7 @@ const ReviewQuery = {
     return axios
       .get(`${API_URL}/review/${id}?api_key=${API_KEY}`)
       .then(res => res.data)
-      .catch(({ res }) => new GraphQLError(res.data));
+      .catch(({ response }) => new GraphQLError(response.data));
   },
 };
 

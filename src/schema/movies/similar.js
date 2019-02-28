@@ -36,7 +36,7 @@ const MovieSimilarQuery = {
         `${API_URL}/movie/${id}/similar?api_key=${API_KEY}&language=${language}&page=${page}`,
       )
       .then(res => res.data.results)
-      .catch(({ res }) => new GraphQLError(res.data));
+      .catch(({ response }) => new GraphQLError(response.data));
   },
 };
 

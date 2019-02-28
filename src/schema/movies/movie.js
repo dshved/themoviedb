@@ -39,7 +39,7 @@ const MovieType = new GraphQLObjectType({
             }/similar?api_key=${API_KEY}&language=en-US&page=1`,
           )
           .then(res => res.data.results)
-          .catch(({ res }) => new GraphQLError(res.data));
+          .catch(({ response }) => new GraphQLError(response.data));
       },
     },
   },
@@ -58,7 +58,8 @@ const MovieQuery = {
   resolve(parentValue, { id, language = 'en-US' }) {
     return axios
       .get(`${API_URL}/movie/${id}?api_key=${API_KEY}&language=${language}`)
-      .then(res => res.data);
+      .then(res => res.data)
+      .catch(({ response }) => new GraphQLError(response.data));
   },
 };
 

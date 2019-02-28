@@ -32,7 +32,7 @@ const MovieKeywordsQuery = {
     return axios
       .get(`${API_URL}/movie/${id}/keywords?api_key=${API_KEY}`)
       .then(res => res.data.keywords)
-      .catch(({ res }) => new GraphQLError(res.data));
+      .catch(({ response }) => new GraphQLError(response.data));
   },
 };
 

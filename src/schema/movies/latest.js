@@ -24,7 +24,7 @@ const MovieLatestQuery = {
     return axios
       .get(`${API_URL}/movie/latest?api_key=${API_KEY}&language=${language}`)
       .then(res => res.data)
-      .catch(({ res }) => new GraphQLError(res.data));
+      .catch(({ response }) => new GraphQLError(response.data));
   },
 };
 

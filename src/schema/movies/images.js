@@ -74,7 +74,7 @@ const MovieImagesQuery = {
         `${API_URL}/movie/${id}/images?api_key=${API_KEY}&language=${language}&include_image_language=${imageLanguage}`,
       )
       .then(res => res.data)
-      .catch(({ res }) => new GraphQLError(res.data));
+      .catch(({ response }) => new GraphQLError(response.data));
   },
 };
 

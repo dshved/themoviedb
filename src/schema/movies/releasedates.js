@@ -62,7 +62,7 @@ const MovieReleaseDatesQuery = {
     return axios
       .get(`${API_URL}/movie/${id}/release_dates?api_key=${API_KEY}`)
       .then(res => res.data.results)
-      .catch(({ res }) => new GraphQLError(res.data));
+      .catch(({ response }) => new GraphQLError(response.data));
   },
 };
 

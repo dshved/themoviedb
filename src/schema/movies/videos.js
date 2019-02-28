@@ -56,7 +56,7 @@ const MovieVideosQuery = {
         `${API_URL}/movie/${id}/videos?api_key=${API_KEY}&language=${language}`,
       )
       .then(res => res.data.results)
-      .catch(({ res }) => new GraphQLError(res.data));
+      .catch(({ response }) => new GraphQLError(response.data));
   },
 };
 

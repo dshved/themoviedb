@@ -25,7 +25,7 @@ const MovieUpcomingQuery = {
         `${API_URL}/movie/upcoming?api_key=${API_KEY}&language=${language}&page=${page}`,
       )
       .then(res => res.data.results)
-      .catch(({ res }) => new GraphQLError(res.data));
+      .catch(({ response }) => new GraphQLError(response.data));
   },
 };
 
