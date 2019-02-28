@@ -13,6 +13,7 @@ const { MovieVideosQuery } = require('./videos');
 const { MovieReleaseDatesQuery } = require('./releasedates');
 const { MovieKeywordsQuery } = require('./keywords');
 const { MovieImagesQuery } = require('./images');
+const { MovieExternalIdsQuery } = require('./externalids');
 
 module.exports = {
   MoviesQuery: {
@@ -60,6 +61,9 @@ module.exports = {
     },
     movieImages: {
       ...MovieImagesQuery,
+    },
+    movieExternalIds: {
+      ...MovieExternalIdsQuery,
     },
   },
 };
