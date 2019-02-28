@@ -4,6 +4,7 @@ const {
   GraphQLInt,
   GraphQLString,
   GraphQLList,
+  GraphQLError,
 } = require('graphql');
 const { API_KEY, API_URL } = require('../../../config');
 
@@ -30,7 +31,8 @@ const MovieKeywordsQuery = {
   resolve(parentValue, { id }) {
     return axios
       .get(`${API_URL}/movie/${id}/keywords?api_key=${API_KEY}`)
-      .then(res => res.data.keywords);
+      .then(res => res.data.keywords)
+      .catch(({ res }) => new GraphQLError(res.data));
   },
 };
 

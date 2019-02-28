@@ -4,6 +4,7 @@ const {
   GraphQLList,
   GraphQLString,
   GraphQLInt,
+  GraphQLError,
 } = require('graphql');
 const { API_KEY, API_URL } = require('../../../config');
 
@@ -58,7 +59,8 @@ const MovieListsQuery = {
       .get(
         `${API_URL}/movie/${id}/lists?api_key=${API_KEY}&language=${language}&page=${page}`,
       )
-      .then(res => res.data.results);
+      .then(res => res.data.results)
+      .catch(({ res }) => new GraphQLError(res.data));
   },
 };
 

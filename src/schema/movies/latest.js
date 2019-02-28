@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { GraphQLObjectType } = require('graphql');
+const { GraphQLObjectType, GraphQLError } = require('graphql');
 const { API_KEY, API_URL } = require('../../../config');
 
 const { MovieBigType, LanguageType } = require('./types');
@@ -23,7 +23,8 @@ const MovieLatestQuery = {
   resolve(parentValue, { language = 'en-US' }) {
     return axios
       .get(`${API_URL}/movie/latest?api_key=${API_KEY}&language=${language}`)
-      .then(res => res.data);
+      .then(res => res.data)
+      .catch(({ res }) => new GraphQLError(res.data));
   },
 };
 

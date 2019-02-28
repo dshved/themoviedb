@@ -1,5 +1,10 @@
 const axios = require('axios');
-const { GraphQLObjectType, GraphQLList, GraphQLInt } = require('graphql');
+const {
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLInt,
+  GraphQLError,
+} = require('graphql');
 const { API_KEY, API_URL } = require('../../../config');
 const { MovieSmallType, LanguageType, PageType } = require('./types');
 
@@ -30,7 +35,8 @@ const MovieSimilarQuery = {
       .get(
         `${API_URL}/movie/${id}/similar?api_key=${API_KEY}&language=${language}&page=${page}`,
       )
-      .then(res => res.data.results);
+      .then(res => res.data.results)
+      .catch(({ res }) => new GraphQLError(res.data));
   },
 };
 

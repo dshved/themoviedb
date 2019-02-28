@@ -5,6 +5,7 @@ const {
   GraphQLString,
   GraphQLList,
   GraphQLFloat,
+  GraphQLError,
 } = require('graphql');
 const { LanguageType } = require('./types');
 const { API_KEY, API_URL } = require('../../../config');
@@ -39,7 +40,7 @@ const MovieDetailImageType = new GraphQLObjectType({
 const MovieImagesType = new GraphQLObjectType({
   name: 'MovieImages',
   description: `Get the images that belong to a movie.
-  
+
     Querying images with a language parameter will filter the results. If you want to include a fallback language (especially useful for backdrops) you can use the include_image_language parameter. This should be a comma seperated value like so: include_image_language=en,null.`,
   fields: {
     id: {
@@ -72,7 +73,8 @@ const MovieImagesQuery = {
       .get(
         `${API_URL}/movie/${id}/images?api_key=${API_KEY}&language=${language}&include_image_language=${imageLanguage}`,
       )
-      .then(res => res.data);
+      .then(res => res.data)
+      .catch(({ res }) => new GraphQLError(res.data));
   },
 };
 

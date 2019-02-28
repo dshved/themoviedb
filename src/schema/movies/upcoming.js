@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { GraphQLObjectType, GraphQLList } = require('graphql');
+const { GraphQLObjectType, GraphQLList, GraphQLError } = require('graphql');
 const { API_KEY, API_URL } = require('../../../config');
 
 const { MovieSmallType, MovieDefaultArgsType } = require('./types');
@@ -24,7 +24,8 @@ const MovieUpcomingQuery = {
       .get(
         `${API_URL}/movie/upcoming?api_key=${API_KEY}&language=${language}&page=${page}`,
       )
-      .then(res => res.data.results);
+      .then(res => res.data.results)
+      .catch(({ res }) => new GraphQLError(res.data));
   },
 };
 

@@ -1,5 +1,10 @@
 const axios = require('axios');
-const { GraphQLString, GraphQLInt, GraphQLObjectType } = require('graphql');
+const {
+  GraphQLString,
+  GraphQLInt,
+  GraphQLObjectType,
+  GraphQLError,
+} = require('graphql');
 
 const { API_KEY, API_URL } = require('../../../config');
 
@@ -43,7 +48,8 @@ const ReviewQuery = {
   resolve(parentValue, { id }) {
     return axios
       .get(`${API_URL}/review/${id}?api_key=${API_KEY}`)
-      .then(res => res.data);
+      .then(res => res.data)
+      .catch(({ res }) => new GraphQLError(res.data));
   },
 };
 

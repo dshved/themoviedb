@@ -4,6 +4,7 @@ const {
   GraphQLList,
   GraphQLInt,
   GraphQLString,
+  GraphQLError,
 } = require('graphql');
 const { API_KEY, API_URL } = require('../../../config');
 
@@ -37,7 +38,8 @@ const MovieType = new GraphQLObjectType({
               parrentValue.id
             }/similar?api_key=${API_KEY}&language=en-US&page=1`,
           )
-          .then(res => res.data.results);
+          .then(res => res.data.results)
+          .catch(({ res }) => new GraphQLError(res.data));
       },
     },
   },
